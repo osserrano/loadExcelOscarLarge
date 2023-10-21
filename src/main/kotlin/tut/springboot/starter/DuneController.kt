@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import tut.springboot.starter.model.Bank
-import tut.springboot.starter.service.BankService
+import tut.springboot.starter.service.DuneService
 import java.lang.IllegalArgumentException
 
 @RestController
-@RequestMapping("/api/banks")
-class BankController(
-    private val service: BankService
+@RequestMapping("/dune")
+class DuneController(
+    private val service: DuneService
 ) {
 
     @ExceptionHandler(NoSuchElementException::class)
@@ -28,14 +28,14 @@ class BankController(
     fun handleBadRequest(e: IllegalArgumentException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 
-    @GetMapping
-    fun getBanks(): Collection<Bank> = service.getBanks()
+    @GetMapping("/quotes")
+    fun getDuneQuotesAndCharacters(): Map<String, String> = service.getQuotesAndCharacter()
 
-    @GetMapping("/{accountNumber}")
-    fun getBank(@PathVariable accountNumber: String): Bank = service.getBank(accountNumber)
+    @GetMapping("quotes/{quote}")
+    fun getQuote(@PathVariable quote: String): String = service.getQuote(quote)
 
-    @PostMapping()
+    @PostMapping("/quotes")
     @ResponseStatus(HttpStatus.CREATED)
-    fun addBank(@RequestBody bank: Bank): Bank = service.addBank(bank)
+    fun addBank(@RequestBody quote: String): String = service.addQuote(quote = quote)
 
 }

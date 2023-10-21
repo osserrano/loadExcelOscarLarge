@@ -20,19 +20,8 @@ import java.util.function.Supplier
 @SpringBootApplication
 class StarterApplication {
 
-    @Bean
-    fun produceChuckNorris(): Supplier<Message<String>> {
-        return Supplier {
-            MessageBuilder.withPayload(Faker.instance().chuckNorris().fact()).build()
-        }
-    }
 
-    @Bean
-    fun consumeChuckNorris(): Consumer<Message<String>> {
-        return Consumer {
-            println("FACT: ${it.payload}")
-        }
-    }
+
 
     @Bean
     fun processWords(): Function<KStream<String?, String>, KStream<String, Long>> {
@@ -48,20 +37,6 @@ class StarterApplication {
                 }
         }
     }
-
-//    @Bean
-//    fun kStream(streamsBuilder: StreamsBuilder): KStream<String, String> {
-//        val messagesStream: KStream<String, String> =
-//            streamsBuilder.stream(EXAMPLE_TOPIC_NAME, Consumed.with(Serdes.String(), Serdes.String()))
-//
-//        messagesStream
-//            .flatMapValues { value -> value.split(" ") }
-//            .filter { _, value -> value.contains("[0-9]".toRegex()) }
-//
-//        messagesStream.to("aggregated_messages", Produced.with(Serdes.String(), Serdes.String()))
-//
-//        return messagesStream
-//    }
 
 }
 

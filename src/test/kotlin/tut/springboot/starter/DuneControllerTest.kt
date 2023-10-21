@@ -16,7 +16,7 @@ import tut.springboot.starter.model.Bank
 
 @SpringBootTest
 @AutoConfigureMockMvc
-internal class BankControllerTest @Autowired constructor(
+internal class DuneControllerTest @Autowired constructor(
     val mockMvc: MockMvc,
     val objectMapper: ObjectMapper
 ) {

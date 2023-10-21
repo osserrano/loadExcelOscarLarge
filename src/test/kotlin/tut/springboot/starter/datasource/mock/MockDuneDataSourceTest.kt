@@ -3,8 +3,8 @@ package tut.springboot.starter.datasource.mock
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class MockBankDataSourceTest {
-    private val mockDataSource = MockBankDataSource()
+internal class MockDuneDataSourceTest {
+    private val mockDataSource = MockDuneDataSource()
 
     @Test
     fun `should provide a collection of banks`() {
